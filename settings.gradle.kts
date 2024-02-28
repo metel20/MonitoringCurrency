@@ -15,4 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Monitoring Currency"
 include(":app")
- 
+include(":domain")
+include(":data")
+include(":presentation")
