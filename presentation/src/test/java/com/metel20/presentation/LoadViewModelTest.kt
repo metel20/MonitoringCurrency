@@ -49,16 +49,15 @@ class LoadViewModelTest {
 
         uiObservable.checkProgress()
         runAsync.returnResult()
-        navigation.checkNavigateToLoad()
+        navigation.checkNavigateToDashboard()
         clear.checkCalled(LoadViewModel::class.java)
     }
 
     @Test
-    fun testFirstRunSuccess() {
-        viewModel.init(isFirstRun = true)
-        uiObservable.checkProgress()
-        runAsync.returnResult()
-        clear.checkCalled(LoadViewModel::class.java)
-        navigation.checkNavigateToLoad()
+    fun notFirstRun() {
+        viewModel.init(isFirstRun = false)
+        uiObservable.checkNotCalled()
+        navigation.checkNotCalled()
+        clear.checkNotCalled()
     }
 }
