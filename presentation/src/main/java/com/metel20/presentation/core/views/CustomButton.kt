@@ -3,16 +3,17 @@ package com.metel20.presentation.core.views
 import android.content.Context
 import android.os.Parcelable
 import android.util.AttributeSet
+import com.google.android.material.button.MaterialButton
 
 class CustomButton @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0,
-) : androidx.appcompat.widget.AppCompatImageButton(context, attrs, defStyleAttr), ChangeVisibility {
+) : MaterialButton(context, attrs, defStyleAttr), ChangeVisibility {
 
-    override fun onSaveInstanceState(): Parcelable? {
-        return super.onSaveInstanceState()?.let {
+    override fun onSaveInstanceState(): Parcelable {
+        return super.onSaveInstanceState().let {
             val state = VisibilitySavedState(it)
             state.save(this)
-            return state
+            state
         }
     }
 

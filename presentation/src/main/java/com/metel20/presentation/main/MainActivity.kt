@@ -7,7 +7,6 @@ import com.metel20.presentation.core.CustomViewModel
 import com.metel20.presentation.core.ProvideViewModel
 import com.metel20.presentation.core.Screen
 import com.metel20.presentation.core.UpdateUi
-import com.metel20.presentation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), ProvideViewModel {
 
@@ -16,8 +15,7 @@ class MainActivity : AppCompatActivity(), ProvideViewModel {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
         viewModel = viewModel(MainViewModel::class.java)
 
