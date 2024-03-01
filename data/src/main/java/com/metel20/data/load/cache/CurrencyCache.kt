@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "currencies_table")
+@Entity(tableName = "currency_table")
 data class CurrencyCache(
     @PrimaryKey
     @ColumnInfo("id")

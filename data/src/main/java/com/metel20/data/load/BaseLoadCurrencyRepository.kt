@@ -13,6 +13,7 @@ class BaseLoadCurrencyRepository(
     private val cacheDataSource: CurrencyCacheDataSource.Mutable,
     private val provideResources: ProvideResources
 ) : LoadCurrenciesRepository {
+
     override suspend fun loadCurrencies(): LoadCurrenciesResult {
         return try {
             if (cacheDataSource.read().isEmpty()) {
