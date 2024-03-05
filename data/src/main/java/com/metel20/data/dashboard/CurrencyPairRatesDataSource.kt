@@ -1,7 +1,7 @@
-package com.metel20.data.latestCurrency
+package com.metel20.data.dashboard
 
 import com.metel20.dashboard.DashboardItem
-import com.metel20.data.latestCurrency.cache.LatestCurrencyCache
+import com.metel20.data.dashboard.cache.LatestCurrencyCache
 
 interface CurrencyPairRatesDataSource {
 
@@ -15,8 +15,8 @@ interface CurrencyPairRatesDataSource {
         override suspend fun data(favoriteRates: List<LatestCurrencyCache>) =
             favoriteRates.map { favoriteRate ->
                 DashboardItem.Base(
-                    from = favoriteRate.from,
-                    to = favoriteRate.to,
+                    fromCurrency = favoriteRate.from,
+                    toCurrency = favoriteRate.to,
                     rates = if (favoriteRate.isOutdated(currentTimeInMillis))
                         updatedRateDataSource.updatedRate(favoriteRate)
                     else

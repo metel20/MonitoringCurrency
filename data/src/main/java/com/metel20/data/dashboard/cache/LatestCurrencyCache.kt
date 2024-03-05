@@ -1,8 +1,8 @@
-package com.metel20.data.latestCurrency.cache
+package com.metel20.data.dashboard.cache
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import com.metel20.data.latestCurrency.CurrentTimeInMillis
+import com.metel20.data.dashboard.CurrentTimeInMillis
 import java.util.concurrent.TimeUnit
 
 @Entity(tableName = "currency_table", primaryKeys = ["from", "to"])

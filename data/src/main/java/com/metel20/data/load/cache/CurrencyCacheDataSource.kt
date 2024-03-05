@@ -3,7 +3,7 @@ package com.metel20.data.load.cache
 interface CurrencyCacheDataSource {
 
     interface Save {
-        suspend fun save(currencies: List<CurrencyCache>)
+        suspend fun save(currencies: HashMap<String, String>)
     }
 
     interface Read {
@@ -16,8 +16,10 @@ interface CurrencyCacheDataSource {
 
         constructor(database: CurrencyDataBase) : this(database.currencyDao())
 
-        override suspend fun save(currencies: List<CurrencyCache>) {
-            currencyDao.insert(currencies)
+        override suspend fun save(currencies: HashMap<String, String>) {
+            currencyDao.insert(currencies.map {
+                CurrencyCache(it.key, it.value)
+            })
         }
 
         override suspend fun read(): List<CurrencyCache> {

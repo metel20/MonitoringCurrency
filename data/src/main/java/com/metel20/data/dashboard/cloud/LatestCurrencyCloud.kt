@@ -1,4 +1,4 @@
-package com.metel20.data.latestCurrency.cloud
+package com.metel20.data.dashboard.cloud
 
 import com.google.gson.annotations.SerializedName
 

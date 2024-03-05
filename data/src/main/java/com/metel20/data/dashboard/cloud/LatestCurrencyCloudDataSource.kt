@@ -1,4 +1,4 @@
-package com.metel20.data.latestCurrency.cloud
+package com.metel20.data.dashboard.cloud
 
 import retrofit2.Retrofit
 

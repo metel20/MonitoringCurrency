@@ -1,4 +1,4 @@
-package com.metel20.data.latestCurrency
+package com.metel20.data.dashboard
 
 interface CurrentTimeInMillis {
     fun time(): Long

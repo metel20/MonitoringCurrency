@@ -1,8 +1,8 @@
-package com.metel20.data.latestCurrency
+package com.metel20.data.dashboard
 
-import com.metel20.data.latestCurrency.cache.LatestCurrencyCache
-import com.metel20.data.latestCurrency.cache.LatestCurrencyCacheDataSource
-import com.metel20.data.latestCurrency.cloud.LatestCurrencyCloudDataSource
+import com.metel20.data.dashboard.cache.LatestCurrencyCache
+import com.metel20.data.dashboard.cache.LatestCurrencyCacheDataSource
+import com.metel20.data.dashboard.cloud.LatestCurrencyCloudDataSource
 
 interface UpdatedRateDataSource {
     suspend fun updatedRate(currentPair: LatestCurrencyCache): Double

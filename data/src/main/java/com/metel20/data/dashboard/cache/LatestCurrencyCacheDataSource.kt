@@ -1,4 +1,4 @@
-package com.metel20.data.latestCurrency.cache
+package com.metel20.data.dashboard.cache
 
 interface LatestCurrencyCacheDataSource {
 

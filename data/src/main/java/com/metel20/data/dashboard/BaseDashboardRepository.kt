@@ -1,9 +1,9 @@
-package com.metel20.data.latestCurrency
+package com.metel20.data.dashboard
 
 import com.metel20.dashboard.DashboardRepository
 import com.metel20.dashboard.DashboardResult
 import com.metel20.data.core.HandleError
-import com.metel20.data.latestCurrency.cache.LatestCurrencyCacheDataSource
+import com.metel20.data.dashboard.cache.LatestCurrencyCacheDataSource
 
 class BaseDashboardRepository(
     private val cacheDataSource: LatestCurrencyCacheDataSource.Read,
