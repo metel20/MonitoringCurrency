@@ -1,4 +1,4 @@
-package com.metel20.data.load.cache
+package com.metel20.data.dashboard.cache
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -6,10 +6,11 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
-interface CurrencyDao {
+interface LatestCurrencyDao {
+
     @Query("SELECT * FROM currency_table")
-    suspend fun currencies(): List<CurrencyCache>
+    suspend fun favoriteRates(): List<LatestCurrencyCache>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(list: List<CurrencyCache>)
+    suspend fun insert(currency: LatestCurrencyCache)
 }
