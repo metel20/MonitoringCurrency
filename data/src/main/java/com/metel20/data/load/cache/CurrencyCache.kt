@@ -4,11 +4,11 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "currency_table")
+@Entity(tableName = "currencies_table")
 data class CurrencyCache(
-    @PrimaryKey
-    @ColumnInfo("id")
-    val id: String,
     @ColumnInfo("name")
+    @PrimaryKey
     val name: String,
+    @ColumnInfo("fullName")
+    val fullName: String
 )

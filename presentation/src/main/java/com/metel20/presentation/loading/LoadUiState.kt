@@ -19,7 +19,7 @@ interface LoadUiState {
             retryButton: ChangeVisibility
         ) {
             errorTextView.show()
-            errorTextView.change(message)
+            errorTextView.changeText(message)
             progressBar.hide()
             retryButton.show()
         }

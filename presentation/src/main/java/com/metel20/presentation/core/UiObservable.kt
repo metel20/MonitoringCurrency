@@ -19,7 +19,6 @@ interface UiObservable<UiState : Any> : UpdateObserver<UiState>, UpdateUi<UiStat
 
 }
 
-
 interface UpdateObserver<UiState : Any> {
     fun updateObserver(observer: UpdateUi<UiState>)
 }

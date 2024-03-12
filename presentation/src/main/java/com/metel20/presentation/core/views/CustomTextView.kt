@@ -34,13 +34,15 @@ class CustomTextView @JvmOverloads constructor(
         visibility = GONE
     }
 
-    override fun change(text: String) {
+    override fun invisible() {
+        TODO("Not yet implemented")
+    }
+
+    override fun changeText(text: String) {
         this.text = text
     }
 }
 
 interface ChangeText {
-    fun change(text: String)
+    fun changeText(text: String)
 }
-
-interface ErrorText : ChangeVisibility, ChangeText

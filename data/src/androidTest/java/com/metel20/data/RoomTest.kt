@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.metel20.data.core.CurrenciesDatabase
+import com.metel20.data.load.cache.CurrenciesDao
 import com.metel20.data.load.cache.CurrencyCache
-import com.metel20.data.load.cache.CurrencyDao
-import com.metel20.data.load.cache.CurrencyDataBase
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -18,15 +18,15 @@ import java.io.IOException
 @RunWith(AndroidJUnit4::class)
 class RoomTest {
 
-    private lateinit var db: CurrencyDataBase
-    private lateinit var dao: CurrencyDao
+    private lateinit var db: CurrenciesDatabase
+    private lateinit var dao: CurrenciesDao
 
     @Before
     fun setup() {
         val context: Context = ApplicationProvider.getApplicationContext()
-        db = Room.inMemoryDatabaseBuilder(context, CurrencyDataBase::class.java)
+        db = Room.inMemoryDatabaseBuilder(context, CurrenciesDatabase::class.java)
             .allowMainThreadQueries().build()
-        dao = db.currencyDao()
+        dao = db.currenciesDao()
     }
 
     @After

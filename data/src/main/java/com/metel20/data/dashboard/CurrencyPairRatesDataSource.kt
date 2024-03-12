@@ -15,9 +15,9 @@ interface CurrencyPairRatesDataSource {
         override suspend fun data(favoriteRates: List<LatestCurrencyCache>) =
             favoriteRates.map { favoriteRate ->
                 DashboardItem.Base(
-                    fromCurrency = favoriteRate.from,
-                    toCurrency = favoriteRate.to,
-                    rates = if (favoriteRate.isOutdated(currentTimeInMillis))
+                    from = favoriteRate.from,
+                    to = favoriteRate.to,
+                    rates = if (favoriteRate.isNotFresh(currentTimeInMillis))
                         updatedRateDataSource.updatedRate(favoriteRate)
                     else
                         favoriteRate.rate

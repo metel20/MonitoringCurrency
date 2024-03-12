@@ -5,40 +5,41 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.metel20.presentation.core.BaseFragment
-import com.metel20.presentation.core.ProvideViewModel
 import com.metel20.presentation.core.UpdateUi
 import com.metel20.presentation.databinding.FragmentLoadBinding
 
-class LoadFragment : BaseFragment<FragmentLoadBinding>() {
+class LoadFragment : BaseFragment<FragmentLoadBinding, LoadViewModel>() {
 
-    private lateinit var viewModel: LoadViewModel
     private lateinit var updateUi: UpdateUi<LoadUiState>
 
     override fun inflate(inflater: LayoutInflater, container: ViewGroup?) =
         FragmentLoadBinding.inflate(inflater, container, false)
 
+    override val viewModelClass = LoadViewModel::class.java
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as ProvideViewModel).viewModel(LoadViewModel::class.java)
+
         updateUi = object : UpdateUi<LoadUiState> {
             override fun updateUi(uiState: LoadUiState) {
                 uiState.update(
-                    retryButton = binding.retryButton,
-                    progressBar = binding.progressBar,
-                    errorTextView = binding.errorTextView
+                    progressBar = binding.progress.progressBar,
+                    errorTextView = binding.error.errorTextView,
+                    retryButton = binding.error.retryButton
                 )
             }
         }
-        viewModel.init(savedInstanceState == null)
 
-        binding.retryButton.setOnClickListener {
+        binding.error.retryButton.setOnClickListener {
             viewModel.load()
         }
+
+        viewModel.init(isFirstRun = savedInstanceState == null)
     }
 
     override fun onResume() {
         super.onResume()
-        viewModel.startGettingUpdates(updateUi)
+        viewModel.startGettingUpdates(observer = updateUi)
     }
 
     override fun onPause() {
@@ -46,5 +47,3 @@ class LoadFragment : BaseFragment<FragmentLoadBinding>() {
         viewModel.stopGettingUpdates()
     }
 }
-
-
