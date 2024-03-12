@@ -3,14 +3,17 @@ package com.metel20.presentation.core.views
 import android.content.Context
 import android.os.Parcelable
 import android.util.AttributeSet
-import com.google.android.material.button.MaterialButton
 
-class CustomButton @JvmOverloads constructor(
+class ErrorTextView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0,
-) : MaterialButton(context, attrs, defStyleAttr), ChangeVisibility {
+) : androidx.appcompat.widget.AppCompatTextView(context, attrs, defStyleAttr), ErrorText {
 
-    override fun onSaveInstanceState(): Parcelable {
-        return super.onSaveInstanceState().let {
+    init {
+        freezesText = true
+    }
+
+    override fun onSaveInstanceState(): Parcelable? {
+        return super.onSaveInstanceState()?.let {
             val state = VisibilitySavedState(it)
             state.save(this)
             state
@@ -34,4 +37,11 @@ class CustomButton @JvmOverloads constructor(
     override fun invisible() {
         visibility = INVISIBLE
     }
+
+    override fun changeText(text: String) {
+        this.text = text
+    }
+
 }
+
+interface ErrorText : ChangeVisibility, ChangeText

@@ -1,10 +1,10 @@
-package com.metel20.presentation
+package com.metel20.presentation.load
 
 import FakeRunAsync
+import com.metel20.presentation.core.FakeClear
+import com.metel20.presentation.core.FakeNavigation
 import com.metel20.presentation.loading.BaseLoadResultMapper
 import com.metel20.presentation.loading.LoadViewModel
-import com.metel20.presentation.main.FakeClear
-import com.metel20.presentation.main.FakeNavigation
 import com.metel20.presentation.main.FakeRepository
 import com.metel20.presentation.main.FakeUiObservable
 import org.junit.Before

@@ -8,7 +8,7 @@ import androidx.room.Query
 @Dao
 interface LatestCurrencyDao {
 
-    @Query("SELECT * FROM currency_table")
+    @Query("select * from currency_table")
     suspend fun favoriteRates(): List<LatestCurrencyCache>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

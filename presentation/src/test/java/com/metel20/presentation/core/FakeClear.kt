@@ -1,7 +1,5 @@
-package com.metel20.presentation.main
+package com.metel20.presentation.core
 
-import com.metel20.presentation.core.Clear
-import com.metel20.presentation.core.CustomViewModel
 import org.junit.Assert.assertEquals
 
 class FakeClear : Clear {

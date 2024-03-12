@@ -1,10 +1,8 @@
-package com.metel20.presentation.main
+package com.metel20.presentation.core
 
-import com.metel20.presentation.core.Navigation
-import com.metel20.presentation.core.Screen
-import com.metel20.presentation.core.UpdateUi
 import com.metel20.presentation.dashboard.DashboardScreen
 import com.metel20.presentation.loading.LoadScreen
+import com.metel20.presentation.settings.SettingsScreen
 import org.junit.Assert.assertEquals
 
 
@@ -19,6 +17,10 @@ class FakeNavigation : Navigation {
 
     fun checkNavigateToDashboard() {
         assertEquals(DashboardScreen, actual)
+    }
+
+    fun checkNavigateToSettings() {
+        assertEquals(SettingsScreen, actual)
     }
 
     fun checkNotCalled() {

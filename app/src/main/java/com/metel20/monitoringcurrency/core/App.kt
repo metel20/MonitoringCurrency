@@ -29,7 +29,7 @@ class App : Application(), ProvideViewModel {
         viewModelFactory = ProvideViewModel.Factory(makeViewModule)
     }
 
-    override fun <T : CustomViewModel> viewModel(viewModelClass: Class<T>): T {
-        return viewModelFactory.viewModel(viewModelClass)
+    override fun <T : CustomViewModel> viewModel(clazz: Class<T>): T {
+        return viewModelFactory.viewModel(clazz)
     }
 }

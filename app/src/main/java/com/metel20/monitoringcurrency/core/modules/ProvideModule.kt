@@ -3,6 +3,7 @@ package com.metel20.monitoringcurrency.core.modules
 import com.metel20.monitoringcurrency.core.Core
 import com.metel20.presentation.core.Clear
 import com.metel20.presentation.core.CustomViewModel
+import com.metel20.presentation.dashboard.DashboardViewModel
 import com.metel20.presentation.loading.LoadViewModel
 import com.metel20.presentation.main.MainViewModel
 
@@ -22,6 +23,8 @@ interface ProvideModule {
                     core = core,
                     clear = clear
                 )
+
+                DashboardViewModel::class.java -> DashboardModule(core, clear)
 
                 else -> throw IllegalStateException("unknown viewModel $clazz")
             } as Module<T>

@@ -4,31 +4,44 @@ import android.content.Context
 import android.os.Parcelable
 import android.util.AttributeSet
 import android.widget.ProgressBar
-import androidx.appcompat.widget.AppCompatImageButton
 
-class CustomProgressBar @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0,
-) : ProgressBar(context, attrs, defStyleAttr), ChangeVisibility {
+class CustomProgressBar : ProgressBar, ChangeVisibility {
+
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+    constructor(
+        context: Context,
+        attrs: AttributeSet,
+        defStyleAttr: Int = com.google.android.material.R.attr.circularProgressIndicatorStyle
+    ) : super(
+        context,
+        attrs,
+        defStyleAttr
+    )
 
     override fun onSaveInstanceState(): Parcelable? {
         return super.onSaveInstanceState()?.let {
             val state = VisibilitySavedState(it)
             state.save(this)
-            return state
+            state
         }
     }
 
     override fun onRestoreInstanceState(state: Parcelable?) {
-        val restoreState = state as VisibilitySavedState?
-        super.onRestoreInstanceState(restoreState?.superState)
-        restoreState?.restore(this)
+        val restoredState = state as VisibilitySavedState?
+        super.onRestoreInstanceState(restoredState?.superState)
+        state?.restore(this)
     }
 
     override fun show() {
-        visibility = AppCompatImageButton.VISIBLE
+        visibility = VISIBLE
     }
 
     override fun hide() {
-        visibility = AppCompatImageButton.GONE
+        visibility = GONE
+    }
+
+    override fun invisible() {
+        visibility = INVISIBLE
     }
 }
