@@ -5,7 +5,7 @@ import com.metel20.data.dashboard.BaseDashboardRepository
 import com.metel20.data.dashboard.CurrencyPairRatesDataSource
 import com.metel20.data.dashboard.CurrentTimeInMillis
 import com.metel20.data.dashboard.UpdatedRateDataSource
-import com.metel20.data.dashboard.cache.LatestCurrencyCacheDataSource
+import com.metel20.data.dashboard.cache.CurrencyPairCacheDataSource
 import com.metel20.data.dashboard.cloud.LatestCurrencyCloudDataSource
 import com.metel20.monitoringcurrency.core.Core
 import com.metel20.presentation.core.Clear
@@ -19,7 +19,7 @@ class DashboardModule(
 
     override fun viewModel(): DashboardViewModel {
         val cacheDataSource =
-            LatestCurrencyCacheDataSource.Base(core.provideDatabase().latestCurrencyDao())
+            CurrencyPairCacheDataSource.Base(core.provideDatabase().latestCurrencyDao())
         val currentTimeInMillis = CurrentTimeInMillis.Base()
 
         return DashboardViewModel(

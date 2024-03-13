@@ -4,8 +4,8 @@ import com.metel20.dashboard.DashboardItem
 import com.metel20.dashboard.DashboardResult
 import com.metel20.data.core.FakeHandleError
 import com.metel20.data.core.FakeProvideResources
-import com.metel20.data.dashboard.cache.LatestCurrencyCache
-import com.metel20.data.dashboard.cache.LatestCurrencyCacheDataSource
+import com.metel20.data.dashboard.cache.CurrencyPairCache
+import com.metel20.data.dashboard.cache.CurrencyPairCacheDataSource
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -60,9 +60,9 @@ class BaseDashboardRepositoryTest {
     }
 }
 
-private class FakeCacheDataSource : LatestCurrencyCacheDataSource.Read {
+private class FakeCacheDataSource : CurrencyPairCacheDataSource.Read {
 
-    private lateinit var data: List<LatestCurrencyCache>
+    private lateinit var data: List<CurrencyPairCache>
 
     override suspend fun read() = data
 
@@ -72,8 +72,8 @@ private class FakeCacheDataSource : LatestCurrencyCacheDataSource.Read {
 
     fun notEmpty() {
         data = listOf(
-            LatestCurrencyCache("A", "B", 1.0, 0L),
-            LatestCurrencyCache("C", "D", 2.0, 0L)
+            CurrencyPairCache("A", "B", 1.0, 0L),
+            CurrencyPairCache("C", "D", 2.0, 0L)
         )
     }
 }
@@ -90,7 +90,7 @@ private class FakeCurrencyPairRatesDataSource : CurrencyPairRatesDataSource {
         isSuccess = false
     }
 
-    override suspend fun data(favoriteRates: List<LatestCurrencyCache>) =
+    override suspend fun data(favoriteRates: List<CurrencyPairCache>) =
         if (isSuccess)
             favoriteRates.map {
                 DashboardItem.Base(
