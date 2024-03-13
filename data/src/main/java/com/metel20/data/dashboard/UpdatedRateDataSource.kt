@@ -1,22 +1,22 @@
 package com.metel20.data.dashboard
 
-import com.metel20.data.dashboard.cache.LatestCurrencyCache
-import com.metel20.data.dashboard.cache.LatestCurrencyCacheDataSource
+import com.metel20.data.dashboard.cache.CurrencyPairCache
+import com.metel20.data.dashboard.cache.CurrencyPairCacheDataSource
 import com.metel20.data.dashboard.cloud.LatestCurrencyCloudDataSource
 
 interface UpdatedRateDataSource {
-    suspend fun updatedRate(currentPair: LatestCurrencyCache): Double
+    suspend fun updatedRate(currentPair: CurrencyPairCache): Double
 
     class Base(
         private val currentTimeInMillis: CurrentTimeInMillis,
         private val cloudDataSource: LatestCurrencyCloudDataSource,
-        private val cacheDataSource: LatestCurrencyCacheDataSource.Save
+        private val cacheDataSource: CurrencyPairCacheDataSource.Save
     ) : UpdatedRateDataSource {
 
-        override suspend fun updatedRate(currentPair: LatestCurrencyCache): Double {
+        override suspend fun updatedRate(currentPair: CurrencyPairCache): Double {
             val updatedRate = cloudDataSource.latestCurrency(currentPair.from, currentPair.to)
             cacheDataSource.save(
-                LatestCurrencyCache(
+                CurrencyPairCache(
                     currentPair.from,
                     currentPair.to,
                     updatedRate,

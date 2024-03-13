@@ -2,7 +2,7 @@ package com.metel20.data.dashboard.cloud
 
 import com.google.gson.annotations.SerializedName
 
-data class LatestCurrencyCloud(
+data class CurrencyRateCloud(
     @SerializedName("rates")
     private val rates: HashMap<String, Double>
 ) {

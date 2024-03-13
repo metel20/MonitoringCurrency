@@ -6,14 +6,14 @@ interface LatestCurrencyCloudDataSource {
 
     fun latestCurrency(from: String, to: String): Double
 
-    class Base(private val latestCurrencyService: LatestCurrencyService) :
+    class Base(private val currencyRateService: CurrencyRateService) :
         LatestCurrencyCloudDataSource {
 
         constructor(retrofit: Retrofit) : this(
-            retrofit.create(LatestCurrencyService::class.java)
+            retrofit.create(CurrencyRateService::class.java)
         )
 
         override fun latestCurrency(from: String, to: String) =
-            latestCurrencyService.latestCurrency(from, to).execute().body()!!.rate(to)
+            currencyRateService.latestCurrency(from, to).execute().body()!!.rate(to)
     }
 }

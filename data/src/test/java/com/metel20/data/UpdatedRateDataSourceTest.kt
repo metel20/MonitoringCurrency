@@ -1,8 +1,8 @@
 package com.metel20.data
 
 import com.metel20.data.dashboard.UpdatedRateDataSource
-import com.metel20.data.dashboard.cache.LatestCurrencyCache
-import com.metel20.data.dashboard.cache.LatestCurrencyCacheDataSource
+import com.metel20.data.dashboard.cache.CurrencyPairCache
+import com.metel20.data.dashboard.cache.CurrencyPairCacheDataSource
 import com.metel20.data.dashboard.cloud.LatestCurrencyCloudDataSource
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
@@ -29,13 +29,13 @@ class UpdatedRateDataSourceTest {
     @Test
     fun test() = runBlocking {
         val actual = updateRate.updatedRate(
-            LatestCurrencyCache(from = "A", to = "B", rate = -1.0, lastUpdate = 0L)
+            CurrencyPairCache(from = "A", to = "B", rate = -1.0, lastUpdate = 0L)
         )
         val expected = 123.0
         assertEquals(expected, actual, 0.001)
         cloudDataSource.check("A", "B")
         cacheDataSource.check(
-            LatestCurrencyCache(
+            CurrencyPairCache(
                 from = "A", to = "B", rate = 123.0, lastUpdate = 1234L,
             )
         )
@@ -56,15 +56,15 @@ private class FakeLatestCurrencyCloudDataSource : LatestCurrencyCloudDataSource 
     }
 }
 
-class FakeLatestCurrencyCacheDataSource : LatestCurrencyCacheDataSource.Save {
+class FakeLatestCurrencyCacheDataSource : CurrencyPairCacheDataSource.Save {
 
-    private lateinit var actual: LatestCurrencyCache
+    private lateinit var actual: CurrencyPairCache
 
-    override suspend fun save(currency: LatestCurrencyCache) {
+    override suspend fun save(currency: CurrencyPairCache) {
         actual = currency
     }
 
-    fun check(expected: LatestCurrencyCache) {
+    fun check(expected: CurrencyPairCache) {
         assertEquals(expected, actual)
     }
 }
